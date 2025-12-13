@@ -4,150 +4,219 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
 <title>Green Energy Collector — Super Version</title>
+
 <style>
-    :root{
-        --bg:#eafaf0;
-        --card:#ffffff;
-        --accent:#16a34a;
-        --muted:#6b7280;
-    }
-    body{
-        margin:0;
-        font-family:Inter, system-ui, Arial, sans-serif;
-        background:linear-gradient(180deg,#e6fff0 0%, #f0fff8 100%);
-        color:#0f172a;
-        -webkit-font-smoothing:antialiased;
-        text-rendering:optimizeLegibility;
-        padding:20px;
-    }
-    .wrap{ max-width:760px; margin:0 auto; }
-    header{ text-align:center; margin-bottom:18px; }
-    h1{ margin:6px 0; font-size:28px; }
-    .subtitle{ color:var(--muted); margin-bottom:8px; font-size:14px; }
-    .modes{ color:var(--muted); font-weight:600; margin-bottom:18px;}
-    .board{
-        display:grid;
-        grid-template-columns: 1fr 320px;
-        gap:18px;
-    }
-    .card{
-        background:var(--card);
-        border-radius:12px;
-        padding:16px;
-        box-shadow: 0 6px 18px rgba(8,30,13,0.06);
-    }
-    @media(max-width:820px){
-        .board{ grid-template-columns: 1fr; }
-    }
-    .statrow{ display:flex; gap:12px; align-items:center; justify-content:space-between; margin-bottom:12px; }
-    .stat{ font-size:18px; font-weight:700; }
-    .muted{ color:var(--muted); font-weight:600; font-size:14px; }
-    .bigbtn{
-        display:inline-block;
-        background: linear-gradient(180deg,var(--accent),#13833f);
-        color:white;
-        padding:16px 22px;
-        border-radius:10px;
-        font-size:20px;
-        border:0;
-        cursor:pointer;
-        box-shadow: 0 8px 12px rgba(20,120,60,0.12);
-        transition: transform .08s ease;
-    }
-    .bigbtn:active{ transform:scale(.97); }
-    .secondary{
-        background:#f3f9f4;
-        color:var(--accent);
-        border:1px solid #dff3e6;
-    }
-    .shop-item{ display:flex; justify-content:space-between; align-items:center; padding:10px 0; border-bottom:1px dashed #eef6ee; }
-    .shop-item:last-child{ border-bottom:0; }
-    .small{ font-size:14px; color:var(--muted); }
-    .floatText{
-        position:fixed;
-        font-size:20px;
-        color:gold;
-        font-weight:800;
-        pointer-events:none;
-        animation: floatUp 900ms ease-out forwards;
-        text-shadow: 0 2px 6px rgba(0,0,0,0.15);
-    }
-    @keyframes floatUp {
-        0%{ opacity:1; transform: translateY(0) scale(1); }
-        100%{ opacity:0; transform: translateY(-80px) scale(1.1); }
-    }
-    footer{ margin-top:14px; text-align:center; color:var(--muted); font-size:13px; }
-    .controls{ display:flex; gap:10px; align-items:center; justify-content:flex-end; }
-    .reset{ background:#fff0f0; color:#9b1c1c; border:1px solid #ffd6d6; padding:8px 12px; border-radius:8px; cursor:pointer; }
+:root{
+    --bg:#eafaf0;
+    --card:#ffffff;
+    --accent:#16a34a;
+    --muted:#6b7280;
+}
+body{
+    margin:0;
+    font-family:Inter, system-ui, Arial, sans-serif;
+    background:linear-gradient(180deg,#e6fff0 0%, #f0fff8 100%);
+    color:#0f172a;
+    padding:20px;
+}
+.wrap{ max-width:760px; margin:0 auto; }
+header{text-align:center;margin-bottom:18px;}
+h1{margin:6px 0;font-size:28px;}
+.subtitle{color:var(--muted);font-size:14px;}
+.modes{color:var(--muted);font-weight:600;margin-bottom:14px;}
+
+.board{display:grid;grid-template-columns:1fr 320px;gap:18px;}
+.card{
+    background:var(--card);
+    border-radius:12px;
+    padding:16px;
+    box-shadow:0 6px 18px rgba(8,30,13,0.06);
+}
+@media(max-width:820px){.board{grid-template-columns:1fr;}}
+
+.bigbtn{
+    background:linear-gradient(180deg,var(--accent),#13833f);
+    color:white;
+    padding:16px 22px;
+    border-radius:10px;
+    font-size:20px;
+    border:0;
+    cursor:pointer;
+}
+.secondary{
+    background:#f3f9f4;
+    color:var(--accent);
+    border:1px solid #dff3e6;
+}
+
+.small{font-size:14px;color:var(--muted);}
+.stat{font-size:18px;font-weight:700;}
+.reset{
+    background:#fff0f0;color:#9b1c1c;
+    border:1px solid #ffd6d6;
+    padding:8px 12px;border-radius:8px;
+}
+
+.progress{
+    height:10px;
+    background:#e5f5ea;
+    border-radius:999px;
+    overflow:hidden;
+    margin-top:6px;
+}
+.progress-bar{
+    height:100%;
+    background:linear-gradient(90deg,#16a34a,#22c55e);
+    width:0%;
+}
+
+.floatText{
+    position:fixed;
+    font-size:20px;
+    color:gold;
+    font-weight:800;
+    pointer-events:none;
+    animation:floatUp 900ms ease-out forwards;
+}
+@keyframes floatUp{
+    0%{opacity:1;transform:translateY(0);}
+    100%{opacity:0;transform:translateY(-80px);}
+}
+
+footer{text-align:center;color:var(--muted);font-size:13px;margin-top:14px;}
 </style>
 </head>
+
 <body>
 <div class="wrap">
-    <header>
-        <div class="modes"></div>
-        <h1>Green Energy</h1>
-        <div class="subtitle"></div>
-    </header>
+<header>
+    <div class="modes">recyclingcatch / Solarclicker</div>
+    <h1>⚡ Green Energy Collector</h1>
+    <div class="subtitle">Klicken, upgraden & Level aufsteigen</div>
+</header>
 
-    <div class="board">
-        <div class="card">
-            <div class="statrow">
-                <div>
-                    <div class="stat" id="score">Punkte: 0</div>
-                    <div class="small muted" id="best">Best: 0</div>
-                </div>
-                <div class="controls">
-                    <button class="reset" id="resetBtn">Reset</button>
-                </div>
-            </div>
+<div class="board">
+<div class="card">
+    <div class="stat" id="score">Punkte: 0</div>
+    <div class="small" id="best">Best: 0</div>
 
-            <div style="display:flex; gap:12px; flex-wrap:wrap; margin-bottom:12px;">
-                <button class="bigbtn" id="sunBtn">☀️</button>
-                <button class="bigbtn secondary" id="windBtn">🌬️</button>
-            </div>
-
-            <div class="small muted">Klick-Power: <strong id="powerDisplay">1</strong></div>
-            <div class="small muted">Passive Energie: <strong id="ppsDisplay">0 / sek</strong></div>
-            <div id="event"></div>
-        </div>
-
-        <div class="card">
-            <div class="shop-item">
-                <div>Power +1</div>
-                <button id="buyPower" class="bigbtn secondary">Buy</button>
-            </div>
-            <div class="shop-item">
-                <div>Solar Panel</div>
-                <button id="buyPanel" class="bigbtn secondary">Buy</button>
-            </div>
+    <div class="small" style="margin-top:8px;">
+        Level <strong id="level">1</strong>
+        <div class="progress">
+            <div class="progress-bar" id="levelBar"></div>
         </div>
     </div>
 
-    <footer>Made with 💚</footer>
+    <div style="margin:12px 0;">
+        <button class="bigbtn" id="sunBtn">☀️ Sonne</button>
+        <button class="bigbtn secondary" id="windBtn">🌬️ Wind</button>
+    </div>
+
+    <div class="small">Klick-Power: <strong id="power">1</strong></div>
+    <div class="small">Passive Energie: <strong id="pps">0</strong>/s</div>
+
+    <div id="event" class="small" style="margin-top:8px;"></div>
+    <button class="reset" id="resetBtn">Reset</button>
+</div>
+
+<div class="card">
+    <h3>Shop</h3>
+
+    <div class="small">Power +1 (Kosten: <span id="costPower">10</span>)</div>
+    <button class="bigbtn secondary" id="buyPower">Kaufen</button>
+
+    <hr>
+
+    <div class="small">Solar Panel +1/s (Kosten: <span id="costPanel">50</span>)</div>
+    <button class="bigbtn secondary" id="buyPanel">Kaufen</button>
+</div>
+</div>
+
+<footer>💚 Fortschritt wird automatisch gespeichert</footer>
 </div>
 
 <script>
-const STORAGE_KEY = "green_energy_save_v1";
-let state = { score:0, power:1, panels:0, best:0, pps:0 };
+const STORAGE_KEY="green_energy_v2";
 
-function save(){ localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); }
-function load(){ Object.assign(state, JSON.parse(localStorage.getItem(STORAGE_KEY)||"{}")); }
+let state={
+    score:0,
+    power:1,
+    panels:0,
+    best:0,
+    level:1
+};
 
-load();
+function levelNeed(lvl){ return lvl*100; }
 
-document.getElementById("sunBtn").onclick = ()=>{ state.score+=state.power; save(); update(); };
-document.getElementById("windBtn").onclick = ()=>{ state.score+=Math.max(1,state.power-1); save(); update(); };
-document.getElementById("buyPower").onclick = ()=>{ if(state.score>=10){state.score-=10;state.power++;save();update();}};
-document.getElementById("buyPanel").onclick = ()=>{ if(state.score>=50){state.score-=50;state.panels++;state.pps++;save();update();}};
-document.getElementById("resetBtn").onclick = ()=>{ localStorage.clear(); location.reload(); };
+function recalc(){
+    state.pps=state.panels;
+    while(state.score>=levelNeed(state.level)){
+        state.level++;
+        showFloat("Level Up!");
+    }
+}
+
+function save(){ localStorage.setItem(STORAGE_KEY,JSON.stringify(state)); }
+function load(){
+    const s=localStorage.getItem(STORAGE_KEY);
+    if(s) Object.assign(state,JSON.parse(s));
+}
 
 function update(){
-  document.getElementById("score").innerText="Punkte: "+state.score;
-  document.getElementById("powerDisplay").innerText=state.power;
-  document.getElementById("ppsDisplay").innerText=state.pps+" / sek";
+    score.textContent="Punkte: "+Math.floor(state.score);
+    best.textContent="Best: "+state.best;
+    power.textContent=state.power;
+    pps.textContent=state.pps;
+    level.textContent=state.level;
+
+    let need=levelNeed(state.level);
+    levelBar.style.width=Math.min(100,(state.score/need)*100)+"%";
+
+    costPower.textContent=10+(state.power-1)*8;
+    costPanel.textContent=50+state.panels*30;
 }
-setInterval(()=>{ state.score+=state.pps; save(); update(); },1000);
-update();
+
+function clickEnergy(mult){
+    state.score+=state.power*mult;
+    state.best=Math.max(state.best,state.score);
+    recalc(); save(); update();
+}
+
+function showFloat(t){
+    const e=document.createElement("div");
+    e.className="floatText"; e.textContent=t;
+    e.style.left="50%"; e.style.top="40%";
+    document.body.appendChild(e);
+    setTimeout(()=>e.remove(),900);
+}
+
+sunBtn.onclick=()=>clickEnergy(1);
+windBtn.onclick=()=>clickEnergy(0.8);
+
+buyPower.onclick=()=>{
+    let c=10+(state.power-1)*8;
+    if(state.score>=c){state.score-=c;state.power++;recalc();save();update();}
+};
+
+buyPanel.onclick=()=>{
+    let c=50+state.panels*30;
+    if(state.score>=c){state.score-=c;state.panels++;recalc();save();update();}
+};
+
+resetBtn.onclick=()=>{
+    if(confirm("Alles zurücksetzen?")){
+        state={score:0,power:1,panels:0,best:0,level:1};
+        save(); update();
+    }
+};
+
+load(); recalc(); update();
+
+setInterval(()=>{
+    state.score+=state.pps;
+    state.best=Math.max(state.best,state.score);
+    recalc(); save(); update();
+},1000);
 </script>
 </body>
 </html>
