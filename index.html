@@ -4,53 +4,46 @@
 <meta charset="UTF-8">
 <title>Math Challenge Game</title>
 
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
 <!-- Pixel Font -->
 <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
 
 <style>
-html, body {
-  height: 100%;
-  margin: 0;
-  background: #000;
+html, body { height: 100%; margin: 0; }
+body {
+  display: grid;
+  place-items: center;          /* immer exakt mittig */
+  background: #000000;
   color: white;
   font-family: Arial, sans-serif;
   text-align: center;
-  overflow: hidden; /* verhindert Springen */
+  overflow-x: hidden;           /* kein seitliches Rutschen */
 }
 
-/* 🔒 Fester Center-Wrapper */
-body {
-  display: grid;
-  place-items: center; /* immer exakt mittig */
-}
-
-/* 🟦 GAME CONTAINER */
 #gameContainer {
   width: 90%;
   max-width: 700px;
-  padding: 25px;
-  background: #000;
-  border-radius: 18px;
-  box-shadow: 0 0 25px rgba(255,255,255,0.1);
-  box-sizing: border-box; /* stabil */
-  position: fixed; /* FIXIERT in der Mitte */
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%); /* wirklich mittig */
+  padding: 20px;
+  background: #000000;
+  border-radius: 15px;
+  box-shadow: 0 0 25px rgba(255,255,255,0.08);
+  box-sizing: border-box;       /* stabil */
 }
 
 h1 {
-  font-family: 'Press Start 2P', cursive;
-  font-size: 1.6em;
-  margin-bottom: 25px;
+  font-size: 1.8em;
+  margin-bottom: 20px;
   color: #4dd0e1;
+  font-family: 'Press Start 2P', cursive;
 }
 
 #task {
-  font-family: 'Press Start 2P', cursive;
   font-size: 1.4em;
-  margin: 25px 0;
-  word-break: keep-all; /* keine Hyphen */
+  margin: 20px 0;
+  min-height: 50px;
+  font-family: 'Press Start 2P', cursive;
+  word-break: keep-all;         /* keine Hyphen */
 }
 
 #inputContainer {
@@ -61,45 +54,37 @@ h1 {
 
 #answer {
   width: 80%;
-  padding: 12px;
+  max-width: 400px;
   font-size: 1em;
-  border-radius: 12px;
+  padding: 10px;
+  border-radius: 10px;
   border: none;
+  margin-bottom: 15px;
   text-align: center;
-  outline: none;
+  box-sizing: border-box;
 }
 
 button {
-  margin-top: 15px;
-  padding: 12px 30px;
+  padding: 12px 25px;
   font-size: 1em;
-  border-radius: 12px;
   border: none;
+  border-radius: 10px;
   background: #2e7d32;
   color: white;
   cursor: pointer;
   transition: all 0.2s;
 }
 
-button:hover {
-  background: #4caf50;
-}
+button:hover { background: #4caf50; }
 
-#message {
-  margin-top: 20px;
-  font-size: 1em;
-  min-height: 40px;
-}
-
-#score {
-  margin-top: 15px;
-  font-size: 1em;
-  color: #ffeb3b;
-}
+#message { margin-top: 20px; font-size: 1em; min-height: 40px; }
+#score { margin-top: 15px; font-size: 1em; color: #ffeb3b; }
 
 @media (max-width: 768px) {
-  h1 { font-size: 1.3em; }
-  #task { font-size: 1.1em; }
+  h1 { font-size: 1.4em; }
+  #task { font-size: 1.2em; }
+  #answer { font-size: 0.9em; }
+  button { font-size: 0.9em; padding: 10px 20px; }
 }
 </style>
 </head>
