@@ -206,15 +206,7 @@ if(word.length < 9){
   return;
 }
 
-  const forbidden = [
-  "dog","cat","rat","ant","cow","lion","tiger","bear",
-  "apple","tree","hat","egg","fish"
-];
-
-if(forbidden.includes(word.toLowerCase())){
-  message.textContent = "❌ Too basic";
-  return;
-}
+  
   // Kein gleicher Endbuchstabe wie davor
 const lastTwo = currentWord.slice(-2).toLowerCase();
 if(word.slice(-1).toLowerCase() === lastTwo[0]){
@@ -241,7 +233,7 @@ function aiTurn(){
   let best=possible[0]; let max=-1;
   for(let w of possible){const next=w.slice(-1).toLowerCase(); const opts=wordList.filter(p=>p[0].toLowerCase()===next&&!usedWords.includes(p)); if(opts.length>max){max=opts.length; best=w;}}
   usedWords.push(best); currentWord=best; document.getElementById('wordDisplay').textContent=`${currentWord}`;
-  wordScore++; if(wordScore>=6){ setTimeout(startTicTacToe,400);}
+  wordScore++; if(wordScore>=6){ setTimeout(startTicTacToe,800);}
 }
 
 // ========================== TIC TAC TOE ==========================
