@@ -254,9 +254,9 @@ function aiTurn(){
       max = opts.length;
       best = w;
     }
-  
+  } // ✅ DIESE KLAMMER HAT GEFEHLT
 
- usedWords.push(best);
+  usedWords.push(best);
   currentWord = best;
   document.getElementById('wordDisplay').textContent = currentWord;
 
@@ -267,6 +267,7 @@ function aiTurn(){
     msg.textContent = 'Ihr wollt mein Denken? Sucht ihn irgendwo.';
     setTimeout(startTicTacToe, 2000);
   }
+}
 
 
 // ========================== TIC TAC TOE ==========================
