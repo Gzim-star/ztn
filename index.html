@@ -180,7 +180,7 @@ function startWordChain(){
   stage='word';
   const container=document.getElementById('gameContainer');
   container.innerHTML=`
-    <h1></h1>
+     <h1></h1>
   <div id="wordDisplay">Apple</div>
 
   <div id="inputContainer">
@@ -200,26 +200,12 @@ function startWordChain(){
     opacity:0;
     transition: opacity 0.5s;
   "></div>
-`;
-
-  function showWordChainHint(){
-  const hint = document.getElementById('wordHint');
-  if(!hint) return; 
+`; 
   currentWord='Apple'; usedWords=[currentWord];
   wordList=["Algorithm","Entropy","Hypothesis","Paradox","Labyrinth",
   "Quantum","Syntax","Recursion","Neural","Topology",
   "Cognition","Spectrum","Vector","Matrix","Anomaly",
   "Threshold","Resonance","Asymmetry","Continuum","Parable"];
-function showWordChainHint(){
-  const hint = document.getElementById('wordHint');
-  if(!hint) return;
-
-  hint.textContent = "🧠 Nur die richtigen Wörter bringen dich weiter.";
-  hint.style.opacity = "1";
-
-  setTimeout(()=>{
-    hint.style.opacity = "0";
-  }, 3000);
 }
   
 function playWord(){
@@ -255,18 +241,6 @@ if(word.slice(-1).toLowerCase() === lastTwo[0]){
 function aiTurn(){
   const lastChar = currentWord.slice(-1).toLowerCase();
   let possible = wordList.filter(
-  function aiTurn(){
-  const lastChar = currentWord.slice(-1).toLowerCase();
-
-  let possible = wordList.filter(
-    w => w[0].toLowerCase() === lastChar && !usedWords.includes(w)
-  );
-
-  // 🤖 keine sichtbaren Wörter → Brain Hint
-  if(possible.length === 0){
-    setTimeout(showWordChainHint, 5000);
-    return;
-  }
     w => w[0].toLowerCase() === lastChar && !usedWords.includes(w)
   );
 
@@ -277,6 +251,11 @@ function aiTurn(){
       usedWords.push(r);
       currentWord = r;
       document.getElementById('wordDisplay').textContent = currentWord;
+ // 🤖 keine sichtbaren Wörter → Brain Hint
+  if(possible.length === 0){
+    setTimeout(showWordChainHint, 5000);
+    return;
+  }
     }
     return;
   }
@@ -306,6 +285,16 @@ function aiTurn(){
     msg.textContent = '';
     setTimeout(startTicTacToe, 500);
   }
+function showWordChainHint(){
+  const hint = document.getElementById('wordHint');
+  if(!hint) return;
+
+  hint.textContent = "🧠 Nur die richtigen Wörter bringen dich weiter.";
+  hint.style.opacity = "1";
+
+  setTimeout(()=>{
+    hint.style.opacity = "0";
+  }, 3000);
 }
 
 
