@@ -59,7 +59,7 @@ body {
   overflow-y: auto;  /* scrollen, wenn Text zu lang ist */
 }
 .close {
-  color: #000000cc;
+  color: #00000000;
   float: right;
   font-size: 28px;
   font-weight: bold;
@@ -128,9 +128,13 @@ button:hover { background: #00000000; }
     // ========================== TIP BUTTON LOGIC ==========================
 const tipButton = document.getElementById('tipButton');
 const tipModal = document.getElementById('tipModal');
-const closeBtn = document.querySelector('.close');
 
 tipButton.onclick = () => {
+// 🔁 Toggle (öffnen / schließen)
+  if (tipModal.style.display === 'block') {
+    tipModal.style.display = 'none';
+    return;
+  }
   let tipText = '';
   if(stage === 'start') tipText = `
 BrainTrials:
