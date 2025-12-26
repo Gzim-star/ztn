@@ -47,7 +47,7 @@ body {
   background-color: #00000000;
 }
 .modal-content {
-  background-color: #0000000c;
+  background-color: #00000000;
   margin: 15% auto;
   padding: 20px;
   border-radius: 12px;
@@ -55,11 +55,11 @@ body {
   max-width: 400px;
   color: whith;
   text-align: left;
-  max-height: 63vh; /* maximale Höhe */
+  max-height: 70vh; /* maximale Höhe */
   overflow-y: auto;  /* scrollen, wenn Text zu lang ist */
 }
 .close {
-  color: #00000000;
+  color: whith;
   float: right;
   font-size: 28px;
   font-weight: bold;
@@ -102,11 +102,6 @@ button:hover { background: #00000000; }
   font-size: 0.8em;
   color: whith;
 }
-
-/* ➕ Zeilenumbrüche korrekt anzeigen */
-.modal-content p {
-  white-space: pre-line;
-}
 </style>
 </head>
 <body>
@@ -133,78 +128,70 @@ const closeBtn = document.querySelector('.close');
 tipButton.onclick = () => {
   let tipText = '';
   if(stage === 'start') tipText = `
-BrainTrials:
-    
+    <p>BrainTrials:<p>
+    <p>BrainTrials is a deterministic, rule-based cognitive system designed to validate structured human input under real-time constraints.</p>
 
-BrainTrials is a deterministic, rule-based cognitive system designed to validate structured human input under real-time constraints.
+<p>The system does not rely on dictionaries, artificial intelligence, machine learning, or probabilistic guessing.</p>
+<p>All outcomes are derived exclusively from explicit rules, state transitions, and input validation logic.</p>
 
-The system does not rely on dictionaries, artificial intelligence, machine learning, or probabilistic guessing.
-All outcomes are derived exclusively from explicit rules, state transitions, and input validation logic.
+<p>Each interaction is processed synchronously, ensuring immediate feedback without latency, freezing, or hidden computation.</p>
+<p>Invalid inputs are rejected through rule violations rather than semantic interpretation.</p>
 
-Each interaction is processed synchronously, ensuring immediate feedback without latency, freezing, or hidden computation.
-Invalid inputs are rejected through rule violations rather than semantic interpretation.
+<p>The architecture enforces progression through constrained stages, where advancement depends on consistency, pattern recognition, and temporal accuracy.</p>
+<p>This design results in a system that is resistant to brute-force input, random noise, and exploit attempts.</p>
 
-The architecture enforces progression through constrained stages, where advancement depends on consistency, pattern recognition, and temporal accuracy.
-This design results in a system that is resistant to brute-force input, random noise, and exploit attempts.
+<p>BrainTrials functions as a closed logical environment: correctness emerges from structure, not from stored knowledge.</p>
+<p>All challenges are deterministic and reproducible, providing a consistent and fair testing arena for users.</p>
 
-BrainTrials functions as a closed logical environment: correctness emerges from structure, not from stored knowledge.
-All challenges are deterministic and reproducible, providing a consistent and fair testing arena for users.
+<p>The system implements multiple game modes—Word Chain, Tic-Tac-Toe, Math Challenge, and Chromatic Trial—each designed to test a different aspect of cognitive processing, including memory, pattern recognition, strategic planning, and rapid decision-making.</p>
 
-The system implements multiple game modes—Word Chain, Tic-Tac-Toe, Math Challenge, and Chromatic Trial—each designed to test a different aspect of cognitive processing, including memory, pattern recognition, strategic planning, and rapid decision-making.
+<p>Scoring and progression are strictly governed by rules: success depends on precise input, temporal accuracy, and pattern recognition rather than guesswork or probabilistic methods. Users cannot bypass challenges using brute-force or random strategies.</p>
 
-Scoring and progression are strictly governed by rules: success depends on precise input, temporal accuracy, and pattern recognition rather than guesswork or probabilistic methods. Users cannot bypass challenges using brute-force or random strategies.
+<p>BrainTrials is optimized for instantaneous feedback, ensuring that each action triggers an immediate and deterministic response. The system’s internal logic prevents hidden operations, caching, or delayed evaluation, guaranteeing transparency in every interaction.</p>
 
-BrainTrials is optimized for instantaneous feedback, ensuring that each action triggers an immediate and deterministic response. The system’s internal logic prevents hidden operations, caching, or delayed evaluation, guaranteeing transparency in every interaction.
-
-Tips: Pay attention to the structure of the system. Logical consistency, awareness of patterns, and strategic foresight are essential to advance. Each game mode builds upon the principles of the previous, requiring both analytical thinking and adaptive strategy.
-    
-You are entering the arena of challenges!
-Only those who think cleverly, react quickly, and recognize patterns can reach the end.
-`;
+<p>Tips: Pay attention to the structure of the system. Logical consistency, awareness of patterns, and strategic foresight are essential to advance. Each game mode builds upon the principles of the previous, requiring both analytical thinking and adaptive strategy.</p>
+    <p>You are entering the arena of challenges!</p>
+    <p>Only those who think cleverly, react quickly, and recognize patterns can reach the end.</p>
+  `;
 
   else if(stage === 'word') tipText = `
-      Word Chain Tips:
-    
-      • Think of ......
-      • The last letter
-      • Find the Answer
-      • Longer or smarter
-    
+      <p>Word Chain Tips:</p>
+    <ul>
+      <li>Think of the last letter</li>
+      <li>Find the Answer</li>
+      <li>Longer or smarter</li>
+    </ul>
   `;
 
   else if(stage === 'tic') tipText = `
-      Tic-Tac-Toe Tips:
-    
-      • Get three to win
-      • Block your opponent
-      • Center is powerful
-      • It's simple!
-    
+      <p>Tic-Tac-Toe Tips:</p>
+    <ul>
+      <li>Get three to win.</li>
+      <li>Block your opponent.</li>
+      <li>Center is powerful.</li>
+      <li>It's simple!</li>
+    </ul>
   `;
 
   else if(stage === 'math') tipText = `
-      Math Challenge Tips:
-    
-      • Solve quickly 
-      • Time is running!
-      • Correct answers 
-      • Let you advance
-      • Wrong answers
-      • Send you back
-    
+      <p>Math Challenge Tips:</p>
+    <ul>
+      <li>Follow order of operations...</li>
+      <li>Solve quickly time is running!</li>
+      <li>Correct answers let you advance</li>
+      <li>Wrong answers,send you back.</li>
+    </ul>
   `;
 
   else if(stage === 'chromatic') tipText = `
-      Chromatic Trial Tips:
-    
-      • Make all tiles 
-      • The same color
-      • Focus on one color 
-      • Act fast
-      • Grid will reset
-    
+      <p>Chromatic Trial Tips:</p>
+    <ul>
+      <li>Make all tiles the same color.</li>
+      <li>Focus on one color and act fast</li>
+      <li>Or grid will reset.</li>
+    </ul>
   `;
-  typeText(tipModal.querySelector('p'), tipText, 0.5);
+  tipModal.querySelector('p').innerHTML = tipText;
   tipModal.style.display = 'block';
 };
 
@@ -212,21 +199,7 @@ closeBtn.onclick = () => tipModal.style.display = 'none';
 
 window.onclick = (e) => { 
   if(e.target === tipModal) tipModal.style.display = 'none';
-};// ========================== TYPEWRITER EFFECT ==========================
-function typeText(element, text, speed = 15) {
-  element.innerHTML = "";
-  let i = 0;
-
-  function typing() {
-    if (i < text.length) {
-      element.innerHTML += text.charAt(i);
-      i++;
-      setTimeout(typing, speed);
-    }
-  }
-
-  typing();
-}
+};
   
 // ========================== VARIABLES ==========================
 let stage='start', wordScore=0, ticScore={player:0,ai:0,draw:0};
