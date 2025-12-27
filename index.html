@@ -105,12 +105,25 @@ button:hover { background: #00000000; }
 .modal.open {
   display: block;
 }
-
+#systemHeader {
+  position: absolute;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: 'Press Start 2P', cursive;
+  font-size: 1.1em;
+  color: white;
+  opacity: 0.9;
+  pointer-events: none;
+}
 </style>
 </head>
 <body>
 <div id="gameContainer">
   <h1></h1>
+ <div id="systemHeader">
+    BRAINTRIALS SYSTEM
+  </div> 
   <button onclick="startWordChain()">  START  </button>
 </div>
   <!-- Tip Button -->
